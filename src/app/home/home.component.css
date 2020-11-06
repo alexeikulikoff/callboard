@@ -1,0 +1,16 @@
+.containerDiv {
+	width: 100%;
+	position: absolute;
+  	top: 0;
+  	left: 0;
+	
+}
+.centeredDiv {
+	margin: 0 auto;
+	width: 200px;
+	
+	border: 1px solid #000;
+	text-align: center;
+	padding-top: 24px;
+	
+}

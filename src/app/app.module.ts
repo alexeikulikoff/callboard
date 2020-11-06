@@ -9,12 +9,22 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { rootEffects } from './store/effects';
-import {  reducers } from './store/reducers';
+import {  metaReducers, reducers } from './store/reducers';
+import { HomeComponent } from './home/home.component';
+import { QueueTopComponent } from './queue-top/queue-top.component';
+import { QueueContentComponent } from './queue-content/queue-content.component';
+import { QueueFooterComponent } from './queue-footer/queue-footer.component';
+import { QueueAgentComponent } from './queue-agent/queue-agent.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    QueueComponent
+    QueueComponent,
+    HomeComponent,
+    QueueTopComponent,
+    QueueContentComponent,
+    QueueFooterComponent,
+    QueueAgentComponent
   ],
   imports: [
 	HttpClientModule,
@@ -22,7 +32,7 @@ import {  reducers } from './store/reducers';
     BrowserAnimationsModule,
 	MatGridListModule,
 	 StoreModule.forRoot(reducers, {
-    
+      metaReducers,
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true,

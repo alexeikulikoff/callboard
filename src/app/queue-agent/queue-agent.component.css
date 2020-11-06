@@ -1,0 +1,13 @@
+.agent-container {
+	
+	 position:absolute;
+}
+.agent-content {
+	 position: relative;  
+	border: 1px solid #000;
+	text-align: center;
+	  z-index: 1;
+	  left: 0;
+
+	
+}

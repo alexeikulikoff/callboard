@@ -28,24 +28,10 @@ export interface Tile {
 export class AppComponent implements OnInit, AfterViewInit{
 	
  
-  private serverUrl = 'http://localhost:8080/socket'
-  private title = 'WebSockets chat';
-  private stompClient;	
-
-   tiles: Tile[] = [
-    {text: 'One', cols: 1, rows: 1, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 1, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 1, rows: 1, color: '#DDBDF1'}
-   
-  ];
  
-  queues: Queue[];
-  queues$: Observable<Queue[]> = this.store.select(callboardSelector.getAllQueues);
-
   constructor(private httpClient: HttpClient, private store: Store<fromStore.IState>) {
 
-	this.initializeWebSocketConnection();
+	
 	
   }
   ngAfterViewInit(): void {
@@ -57,21 +43,5 @@ export class AppComponent implements OnInit, AfterViewInit{
 
   }
 
-  initializeWebSocketConnection(){
-	   let ws = new SockJS(this.serverUrl);
-	   this.stompClient = Stomp.over(ws);
-	   let that = this;
-	   this.stompClient.connect({}, function(frame) {
-	     that.stompClient.subscribe("/chat", (message) => {
-	       if(message.body) {
-	         $(".chat").append("<div class='message'>"+message.body+"</div>")
-	         console.log(message.body);
-	       }
-	     });
-	   });
-	 }
-  sendMessage(message){
-    this.stompClient.send("/app/send/message" , {}, message);
-    $('#input').val('');
-  }
+  
 }

@@ -14,8 +14,6 @@ export const initialState: IState = {
 const callboardReducer = createReducer(
 
   initialState,
-  
-
   on(callboardAction.loadQueuesSuccess, (state, { queues }) =>{
 	
 	

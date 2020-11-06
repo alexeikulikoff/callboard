@@ -1,0 +1,32 @@
+
+<mat-grid-list cols="4" rowHeight="100vh">
+  <mat-grid-tile
+      *ngFor="let tile of tiles"
+      [colspan]="tile.cols"
+      [rowspan]="tile.rows"
+      [style.background]="tile.color">
+      
+     
+	  <app-queue-top></app-queue-top>
+	  
+	  
+	  <div class="containerDiv">
+<div class="centeredDiv">
+	
+	  <table width="100%"> 
+	   <tr  *ngFor="let queue of tile.queue" >
+	   <td>
+	     <app-queue-agent   [queueName] = "queue.name" >
+	    
+	      </app-queue-agent>
+	   
+	   </td>
+	    
+	   </tr>
+	  </table>  
+	</div>
+	</div>
+  </mat-grid-tile>
+</mat-grid-list>
+
+

@@ -3,7 +3,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { IState } from '../../store/reducers/callboard.reducers';
 
 
-export const callboardState = createFeatureSelector<IState>('callboardState');
+export const callboardState = createFeatureSelector<IState>('callboard');
 
 export const selectQueues = (state: IState) => state.queues;
 
