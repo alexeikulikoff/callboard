@@ -1,15 +1,15 @@
-.containerDiv {
+
+.wrapper {
+	padding-top: 64px;
 	width: 100%;
 	position: absolute;
   	top: 0;
   	left: 0;
 	
 }
-.centeredDiv {
+.content {
 	margin: 0 auto;
-	width: 200px;
-	
-	border: 1px solid #000;
+	padding-bottom: 24px;
 	text-align: center;
 	padding-top: 24px;
 	

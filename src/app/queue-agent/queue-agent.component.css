@@ -1,13 +1,14 @@
 .agent-container {
-	
-	 position:absolute;
-}
-.agent-content {
-	 position: relative;  
-	border: 1px solid #000;
-	text-align: center;
-	  z-index: 1;
-	  left: 0;
-
-	
+	float: left;
+    padding-left: 24px;
+ 
+    border-radius: 2px;
+    line-height: 1.5em;
+	border: 1px solid #09960f;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 4em;
+    width:calc(100% - 25px);
+    text-align:left;
+    color: #ffffff;
+	background: #09920F;
 }

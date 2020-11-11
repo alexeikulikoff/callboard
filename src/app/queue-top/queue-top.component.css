@@ -13,10 +13,21 @@
 }
 .centeredDiv {
 	margin: 0 auto;
-	width: 200px;
+	width: 100%;
 	
-	border: 1px solid #000;
-	text-align: center;
-	padding-top: 24px;
 	
+}
+.queue-container {
+	float: left;
+    padding-left: 24px;
+    border-radius: 4px;
+    line-height: 1.5em;
+	border: 1px solid #2e3436;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 4em;
+     font-weight: bold;
+    width:calc(100% - 25px);
+    text-align:left;
+    color: #ffffff;
+	background: #630e87;
 }

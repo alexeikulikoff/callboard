@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class QueueAgentComponent implements OnInit {
 
-  @Input() queueName: string ;
+  @Input() agent: string ;
   constructor() { }
 
   ngOnInit(): void {

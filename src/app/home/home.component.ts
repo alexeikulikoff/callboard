@@ -11,15 +11,19 @@ import * as callboardAction from '../store/actions/callboard.actions';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { Queue } from '../models/callboard.models';
+import { Queue, Agent, QueueMemberAddedEvent, QueueMemberRemovedEvent, QueueMemberStatusEvent, BridgeEvent, AgentCalledEvent } from '../models/callboard.models';
+
+const CHANNEL_ADD_AGENT = '/add';
+const CHANNEL_REMOVE_AGENT = '/remove';
+const CHANNEL_CHANGE_STATE = '/change';
+const CHANNEL_BRIDGE = '/bridge';
+const CHANNEL_CALL = '/call';
 
 
 export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
+ 
   text: string;
-  queue: Queue[];
+  agents: Agent[];
 }
 
 @Component({
@@ -35,10 +39,10 @@ export class HomeComponent implements OnInit, AfterViewInit{
   private stompClient;	
 
    tiles: Tile[] = [
-    {text: 'One', cols: 1, rows: 1, color: 'lightblue' , queue: [{id: 1, name: 'agent1'}, {id: 2, name: 'agent2'}, ]},
-    {text: 'Two', cols: 1, rows: 1, color: 'lightgreen' , queue: [{id: 1, name: 'agent1'}, {id: 2, name: 'agent2'}, ]},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink',  queue: [{id: 1, name: 'agent1'}, {id: 2, name: 'agent2'},{id: 1, name: 'agent1'}, {id: 2, name: 'agent2'}, ]},
-    {text: 'Four', cols: 1, rows: 1, color: '#DDBDF1',  queue: [{id: 1, name: 'agent1'}, {id: 2, name: 'agent2'}, ]}
+    {text: 'callcenter', agents: [{id: 1, name: 'agent1'}, {id: 2, name: 'agent2'}, ]},
+    {text: 'covid', agents: [{id: 1, name: 'agent1'}, {id: 2, name: 'agent2'}, ]},
+    {text: 'polyclinic',  agents: [{id: 1, name: 'agent1'}, {id: 2, name: 'agent2'},{id: 1, name: 'agent1'}, {id: 2, name: 'agent2'}, ]},
+    {text: 'vip', agents: [{id: 1, name: 'agent1'}, {id: 2, name: 'agent2'}, ]}
    
   ];
  
@@ -70,12 +74,39 @@ export class HomeComponent implements OnInit, AfterViewInit{
 	   this.stompClient = Stomp.over(ws);
 	   let that = this;
 	   this.stompClient.connect({}, function(frame) {
-	     that.stompClient.subscribe("/chat", (message) => {
+	     that.stompClient.subscribe(CHANNEL_ADD_AGENT, (message) => {
 	       if(message.body) {
-	         $(".chat").append("<div class='message'>"+message.body+"</div>")
-	         console.log(message.body);
-	       }
+			 	let res: QueueMemberAddedEvent = JSON.parse(message.body);
+	         	console.log(res);
+	     	}
 	     });
+	     that.stompClient.subscribe(CHANNEL_REMOVE_AGENT, (message) => {
+	         if(message.body) {
+			 	let res: QueueMemberRemovedEvent = JSON.parse(message.body);
+	          	console.log(res);
+	     	}
+	     });
+ 		 that.stompClient.subscribe(CHANNEL_CHANGE_STATE, (message) => {
+	         if(message.body) {
+			 	let res: QueueMemberStatusEvent = JSON.parse(message.body);
+	          	console.log(res);
+	     	}
+	     });
+ 		that.stompClient.subscribe(CHANNEL_BRIDGE, (message) => {
+	        if(message.body) {
+				let res: BridgeEvent = JSON.parse(message.body);
+	          	console.log(res);
+	     	}
+	     });
+		that.stompClient.subscribe(CHANNEL_CALL, (message) => {
+	     
+	        if(message.body) {
+			 	let res: AgentCalledEvent = JSON.parse(message.body);
+	          	console.log(res);
+	     	}
+	     
+	     });
+
 	   });
 	 }
   sendMessage(message){
