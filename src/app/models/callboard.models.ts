@@ -1,12 +1,19 @@
 
-export interface Queue{
-	id: number;
-	name: string;
-	count1: number;
-}
+
 export interface Agent{
-	id: number;
+	number: string;
 	name: string;
+}
+export interface CurrentQueue{
+	
+	queue: string;
+	callers: number;
+	members:  string[];
+
+}
+export interface QueueContents{
+	queues: CurrentQueue[];
+	
 }
 
 export interface QueueMemberStatusEvent {

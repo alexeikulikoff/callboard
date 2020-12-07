@@ -7,23 +7,25 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
 import * as callboardAction from '../../store/actions/callboard.actions';
-import { Queue } from 'src/app/models/callboard.models';
+
 import { IState } from '../reducers/callboard.reducers';
+import { QueueContents } from 'src/app/models/callboard.models';
 
 const serviceURL = environment.serviceURL;
-const url_queues = 'queues';
+const url_queues = 'init';
 
 
 @Injectable()
 export class CallBoardEffects {
  
- loadQueues: Observable<Action> = createEffect(() =>
+
+  loadQueues: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
 	  ofType(callboardAction.loadQueues),
       switchMap(() => {
-	   return  this.httpClient.get<Queue[]>(`${serviceURL}${url_queues}`).pipe(
-		switchMap((queues: Queue[]) => {
-	  		return [callboardAction.loadQueuesSuccess({queues: queues})];		
+	   return  this.httpClient.get<QueueContents>(`${serviceURL}${url_queues}`).pipe(
+		switchMap((content: QueueContents) => {
+	  		return [callboardAction.loadQueuesSuccess({queues: content.queues})];		
 		})
    	 )
          
@@ -31,7 +33,6 @@ export class CallBoardEffects {
     catchError(err =>{ console.log(err); return  of(callboardAction.loadQueuesFail)})
     ));
 
- 
 
   constructor(
 	private httpClient: HttpClient,

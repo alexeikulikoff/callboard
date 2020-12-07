@@ -1,13 +1,18 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { Queue } from 'src/app/models/callboard.models';
+
 import * as callboardAction from '../../store/actions/callboard.actions';
+import {  CurrentQueue } from 'src/app/models/callboard.models';
+
+export const AdminKey = 'Administration';
 
 export interface IState {
-	queues: Queue[];
+	
+	queues: CurrentQueue[];
 		
 }
 export const initialState: IState = {
-  queues: [],
+ 
+	 queues: [] 
 
 }
 

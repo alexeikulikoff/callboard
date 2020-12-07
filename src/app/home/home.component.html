@@ -1,21 +1,20 @@
 
 <mat-grid-list cols="4" rowHeight="100vh">
   <mat-grid-tile
-      *ngFor="let tile of tiles"
+      *ngFor="let queue of queues"
       [colspan]="1"
       [rowspan]="1">
-      
      
-	  <app-queue-top [queue] = "tile.text"></app-queue-top>
+	  <app-queue-top [queue] = "queue.queue"></app-queue-top>
 	  
 	  
 	  <div class="wrapper">
         <div class="content">
 	
 	  <table width="100%"> 
-	   <tr  *ngFor="let agent of tile.agents" >
+	   <tr  *ngFor="let agent of queue.members" >
 	   <td>
-	     <app-queue-agent   [agent] = "agent.name" >
+	     <app-queue-agent   [agent] = "agent" >
 	    
 	      </app-queue-agent>
 	   

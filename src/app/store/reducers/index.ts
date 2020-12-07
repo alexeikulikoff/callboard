@@ -6,6 +6,7 @@ import {
 } from '@ngrx/store';
 
 import * as fromCallboard from '../reducers/callboard.reducers';
+
 import { environment } from 'src/environments/environment';
 
 export interface IState {
@@ -16,6 +17,7 @@ export interface IState {
 export const metaReducers: Array<MetaReducer<IState>> = !environment.production ? [] : [];
 
 export const reducers: ActionReducerMap<IState> = {
+
   callboard: fromCallboard.reducer,
 
 

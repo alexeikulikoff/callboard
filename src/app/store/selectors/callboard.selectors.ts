@@ -7,7 +7,7 @@ export const callboardState = createFeatureSelector<IState>('callboard');
 
 export const selectQueues = (state: IState) => state.queues;
 
-export const selectQueueByName = (state: IState, value: string) => state.queues.filter(s=>s.name === value)[0];
+export const selectQueueByName = (state: IState, value: string) => state.queues.filter(s=>s.queue === value)[0];
 
 
 export const getAllQueues = createSelector(

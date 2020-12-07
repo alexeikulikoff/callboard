@@ -8,17 +8,23 @@ import $ from 'jquery';
 import * as fromStore from '../store/reducers/callboard.reducers';
 import * as callboardSelector from '../store/selectors/callboard.selectors';
 import * as callboardAction from '../store/actions/callboard.actions';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Store, createAction } from '@ngrx/store';
+import { Observable, throwError, of } from 'rxjs';
 
-import { Queue, Agent, QueueMemberAddedEvent, QueueMemberRemovedEvent, QueueMemberStatusEvent, BridgeEvent, AgentCalledEvent } from '../models/callboard.models';
+import { QueueMemberAddedEvent, QueueMemberRemovedEvent, QueueMemberStatusEvent, BridgeEvent, AgentCalledEvent, CurrentQueue, Agent, QueueContents } from '../models/callboard.models';
+import { environment } from 'src/environments/environment';
+import { map, catchError } from 'rxjs/operators';
 
 const CHANNEL_ADD_AGENT = '/add';
 const CHANNEL_REMOVE_AGENT = '/remove';
 const CHANNEL_CHANGE_STATE = '/change';
 const CHANNEL_BRIDGE = '/bridge';
 const CHANNEL_CALL = '/call';
+const CHANNEL_INIT_QUEUES = '/init';
 
+
+const serviceURL = environment.serviceURL;
+const url_queues = 'init';
 
 export interface Tile {
  
@@ -39,33 +45,33 @@ export class HomeComponent implements OnInit, AfterViewInit{
   private stompClient;	
 
    tiles: Tile[] = [
-    {text: 'callcenter', agents: [{id: 1, name: 'agent1'}, {id: 2, name: 'agent2'}, ]},
-    {text: 'covid', agents: [{id: 1, name: 'agent1'}, {id: 2, name: 'agent2'}, ]},
-    {text: 'polyclinic',  agents: [{id: 1, name: 'agent1'}, {id: 2, name: 'agent2'},{id: 1, name: 'agent1'}, {id: 2, name: 'agent2'}, ]},
-    {text: 'vip', agents: [{id: 1, name: 'agent1'}, {id: 2, name: 'agent2'}, ]}
+    {text: 'callcenter', agents: [{number: '1', name: 'agent1'}, {number: '2', name: 'agent2'}, ]},
+    {text: 'covid', agents: [{number: '1', name: 'agent1'}, {number: '2', name: 'agent2'}, ]},
    
   ];
  
-  queues: Queue[];
-  queues$: Observable<Queue[]> = this.store.select(callboardSelector.getAllQueues);
+  queues: CurrentQueue[];
+  queues$: Observable<CurrentQueue[]> = this.store.select(callboardSelector.getAllQueues);
 
   constructor(private httpClient: HttpClient, private store: Store<fromStore.IState>) {
 
 	this.initializeWebSocketConnection();
 	
+	
   }
+  
+
   ngAfterViewInit(): void {
      
   }
   ngOnInit(): void {
-     
-	 this.queues$.subscribe(queues=> {
-		if (queues != null){
-				this.queues = queues
-				console.log(queues);
-		}
+
+	this.queues$.subscribe(res=> {
+		
+		this.queues = res;
+		console.log(this.queues);
 	
-	  });
+	});
 
   }
 
@@ -74,6 +80,9 @@ export class HomeComponent implements OnInit, AfterViewInit{
 	   this.stompClient = Stomp.over(ws);
 	   let that = this;
 	   this.stompClient.connect({}, function(frame) {
+		
+		
+		
 	     that.stompClient.subscribe(CHANNEL_ADD_AGENT, (message) => {
 	       if(message.body) {
 			 	let res: QueueMemberAddedEvent = JSON.parse(message.body);

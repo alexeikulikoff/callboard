@@ -11,7 +11,7 @@ import * as callboardAction from './store/actions/callboard.actions';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { Queue } from './models/callboard.models';
+
 
 export interface Tile {
   color: string;
@@ -39,7 +39,7 @@ export class AppComponent implements OnInit, AfterViewInit{
   }
   ngOnInit(): void {
      
-	 this.store.dispatch(callboardAction.loadQueues()); 
+	this.store.dispatch(callboardAction.loadQueues());
 
   }
 
