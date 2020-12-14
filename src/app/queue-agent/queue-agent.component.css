@@ -1,14 +1,51 @@
+
+
+.agent-red{
+	background-color: red;
+    color: #ffffff;
+}
+
+.agent-blue{
+	background-color: blue;
+    color: #ffffff;
+}
+.agent-green{
+	background-color: green;
+    color: #ffffff;
+}
+
+.agent-yellow{
+	background-color: yellow;
+    color: #ffffff;
+}.agent-cyan{
+	background-color: cyan;
+    color: #ffffff;
+}.agent-coral{
+	background-color: coral;
+    color: #ffffff;
+}.agent-blueviolet{
+	background-color: blueviolet;
+    color: #ffffff;
+}.agent-DarkSlateGrey{
+	background-color: DarkSlateGrey;
+    color: #ffffff;
+}.agent-Indigo{
+	background-color: Indigo;
+    color: #ffffff;
+}
+
+
+
 .agent-container {
 	float: left;
-    padding-left: 24px;
+    padding-left: 12px;
  
     border-radius: 2px;
-    line-height: 1.5em;
+    line-height: 1.2em;
 	border: 1px solid #09960f;
     font-family: "Times New Roman", Times, serif;
-    font-size: 4em;
+    font-size: 3em;
     width:calc(100% - 25px);
     text-align:left;
-    color: #ffffff;
-	background: #09920F;
+
 }

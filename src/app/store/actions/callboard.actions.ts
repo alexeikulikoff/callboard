@@ -7,3 +7,8 @@ export const loadQueuesFail = createAction('[LOAD] Load Queues Fail');
 
 export const loadQueuesSuccess = createAction('[LOAD] Load Queues Success', props<{ queues: CurrentQueue[] }>());
 
+export const setAgentState = createAction('[SET] Agent State', props<{ queue: string, agentNumber: string,  agentState: string }>());
+
+export const addAgent = createAction('[ADD] Add Agent', props<{ queue: string, agentNumber: string, agentName: string, agentState: string }>());
+
+export const removeAgent = createAction('[REMOVE] Remove Agent', props<{ queue: string, agentNumber:  string }>());

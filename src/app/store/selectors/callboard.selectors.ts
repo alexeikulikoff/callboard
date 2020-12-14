@@ -10,6 +10,7 @@ export const selectQueues = (state: IState) => state.queues;
 export const selectQueueByName = (state: IState, value: string) => state.queues.filter(s=>s.queue === value)[0];
 
 
+
 export const getAllQueues = createSelector(
   callboardState,
   selectQueues,

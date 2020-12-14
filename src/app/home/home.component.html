@@ -13,10 +13,8 @@
 	
 	  <table width="100%"> 
 	   <tr  *ngFor="let agent of queue.members" >
-	   <td>
-	     <app-queue-agent   [agent] = "agent" >
-	    
-	      </app-queue-agent>
+	   <td >
+	     <app-queue-agent  [agent] = "agentFullName(agent)" [color]= "getAgentColor(agent.state)"></app-queue-agent>
 	   
 	   </td>
 	    

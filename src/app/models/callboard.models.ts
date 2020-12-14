@@ -3,12 +3,13 @@
 export interface Agent{
 	number: string;
 	name: string;
+	state: string;
 }
 export interface CurrentQueue{
 	
 	queue: string;
 	callers: number;
-	members:  string[];
+	members:  Agent[];
 
 }
 export interface QueueContents{
