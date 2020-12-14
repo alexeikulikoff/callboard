@@ -38,14 +38,13 @@
 
 .agent-container {
 	float: left;
-    padding-left: 12px;
- 
+	padding-left: 6px;
     border-radius: 2px;
-    line-height: 1.2em;
+    line-height: 1.5em;
 	border: 1px solid #09960f;
     font-family: "Times New Roman", Times, serif;
-    font-size: 3em;
-    width:calc(100% - 25px);
+    font-size: 2em;
+    width:calc(100% - 35px);
     text-align:left;
 
 }

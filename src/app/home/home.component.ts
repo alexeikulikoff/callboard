@@ -42,23 +42,24 @@ export interface Tile {
 export class HomeComponent implements OnInit, AfterViewInit{
 	
   agentStateMap = new Map([
-	["0", "red"],
-	["1", "blue"],
-	["2", "green"],
-	["3", "yellow"],
-	["4", "cyan"],
-	["5", "coral"],
-	["6", "blueviolet"],
-	["7", "DarkSlateGrey"],
-	["8", "Indigo"],
+	["0", "primary"],
+	["1", "success"],
+	["2", "info"],
+	["3", "warning"],
+	["4", "dark"],
+	["5", "secondary"],
+	["6", "danger"],
+	["7", "danger"],
+	["8", "light"],
 	
   ]); 
   private serverUrl = 'http://localhost:8080/socket'
   private title = 'WebSockets chat';
   private stompClient;	
 
+  
  
- 
+  colSize: number;
   queues: CurrentQueue[];
   queues$: Observable<CurrentQueue[]> = this.store.select(callboardSelector.getAllQueues);
 
@@ -86,6 +87,7 @@ export class HomeComponent implements OnInit, AfterViewInit{
 	this.queues$.subscribe(res=> {
 		
 		this.queues = res;
+		this.colSize = Math.round(12/res.length);
 		console.log(this.queues);
 	
 	});
@@ -117,6 +119,7 @@ export class HomeComponent implements OnInit, AfterViewInit{
 	         if(message.body) {
 			 	let res: QueueMemberRemovedEvent = JSON.parse(message.body);
 	          	console.log(res);
+				store.dispatch(callboardAction.removeAgent({queue: res.queue, agentNumber: res.membername}));
 	     	}
 	     });
  		 that.stompClient.subscribe(CHANNEL_CHANGE_STATE, (message) => {

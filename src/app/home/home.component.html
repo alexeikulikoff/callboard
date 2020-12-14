@@ -1,4 +1,26 @@
 
+  <div class="container-fluid  ">
+    <div class="row">
+      <div class="col-lg-{{colSize}} text-center card-box"  *ngFor="let queue of queues">
+      <div class="card">
+          <div class="card-title">
+       	  <h3>{{queue.queue}}</h3>
+       	  </div>
+		  <div class="card-body">
+		   	<div class="alert alert-{{getAgentColor(agent.state)}}" role="alert"  *ngFor="let agent of queue.members" >
+		   	<div class="text-justify">
+  			<h5 class="item-text">{{agent.name}}</h5>
+  			<small>{{agent.number}}</small>
+  			</div>
+			</div>
+			
+		  </div>
+		</div>
+      </div>
+    </div>
+  </div>
+
+<!-- 
 <mat-grid-list cols="4" rowHeight="100vh">
   <mat-grid-tile
       *ngFor="let queue of queues"
@@ -10,19 +32,18 @@
 	  
 	  <div class="wrapper">
         <div class="content">
-	
-	  <table width="100%"> 
-	   <tr  *ngFor="let agent of queue.members" >
-	   <td >
-	     <app-queue-agent  [agent] = "agentFullName(agent)" [color]= "getAgentColor(agent.state)"></app-queue-agent>
-	   
-	   </td>
-	    
-	   </tr>
-	  </table>  
+	    <div class="panel-container--absolute panel-container">
+		  <table width="100%"> 
+		   <tr  *ngFor="let agent of queue.members" >
+		   <td >
+		     <app-queue-agent  [agent] = "agentFullName(agent)" [color]= "getAgentColor(agent.state)"></app-queue-agent>
+		   </td>
+		   </tr>
+		  </table>
+	  </div>  
 	</div>
 	</div>
   </mat-grid-tile>
 </mat-grid-list>
-
+-->
 

@@ -1,10 +1,43 @@
 
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.card{
+	background-color: #ce5c00;
+	color: #b6d0d9;
+	
+}
+.card-box{
+	padding-right: 4px;
+	padding-left: 4px; 
+	padding-top: 4px; 
+	
+}
+.card-title{
+	padding-top:12px;
+	background-color: #c4a000;
+	margin-top: 0px;
+}
+.card-body{
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+
+}
+.alert{
+	margin-bottom: 0.25rem;
+	color: green;
+}
+.item-text{
+	margin-bottom: 0rem;
+}
 .wrapper {
 	padding-top: 64px;
 	width: 100%;
 	position: absolute;
   	top: 0;
   	left: 0;
+  
 	
 }
 .content {
@@ -12,5 +45,33 @@
 	padding-bottom: 24px;
 	text-align: center;
 	padding-top: 24px;
+
+}
 	
+.panel-container--absolute {
+    position: absolute;
+}
+
+.panel-container {
+    background-color: #141619;
+    border: 1px solid #202226;
+    position: relative;
+    border-radius: 3px;
+    height: 100%;
+    width: 100%;
+  
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    flex: 1 1 0;
+    padding-left: 8px;
+  
+    
+}
+td {
+    text-align: center;
+    vertical-align: middle;
+  
 }
