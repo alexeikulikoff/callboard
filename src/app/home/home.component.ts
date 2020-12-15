@@ -11,11 +11,13 @@ import * as callboardAction from '../store/actions/callboard.actions';
 import { Store, createAction } from '@ngrx/store';
 import { Observable, throwError, of } from 'rxjs';
 
-import { QueueMemberAddedEvent, QueueMemberRemovedEvent, QueueMemberStatusEvent, BridgeEvent, AgentCalledEvent, CurrentQueue, Agent, QueueContents, QueueCallerAbandonEvent, AgentConnectEvent } from '../models/callboard.models';
+import { QueueMemberAddedEvent, QueueMemberRemovedEvent, QueueMemberStatusEvent, BridgeEvent, AgentCalledEvent, CurrentQueue, Agent, QueueContents, QueueCallerAbandonEvent, AgentConnectEvent, QueueCallerJoinEvent, QueueCallerLeaveEvent } from '../models/callboard.models';
 import { environment } from 'src/environments/environment';
 import { map, catchError } from 'rxjs/operators';
 
 
+const CHANNEL_JOIN = '/join';
+const CHANNEL_LEAVE = '/leave';
 const CHANNEL_ABANDON = '/abandon';
 const CHANNEL_ADD_AGENT = '/add';
 const CHANNEL_REMOVE_AGENT = '/remove';
@@ -92,7 +94,7 @@ export class HomeComponent implements OnInit, AfterViewInit{
 		
 		this.queues = res;
 		this.colSize = Math.round(12/res.length);
-		console.log(res);
+	
 		
 	
 	});
@@ -109,7 +111,7 @@ export class HomeComponent implements OnInit, AfterViewInit{
 		   that.stompClient.subscribe(CHANNEL_ABANDON, (message) => {
 	       if(message.body) {
 			 	let res: QueueCallerAbandonEvent = JSON.parse(message.body);
-	         	
+	            store.dispatch(callboardAction.decQueueCalls({queue: res.queue}));
 	     	}
 	     });
 		
@@ -123,7 +125,6 @@ export class HomeComponent implements OnInit, AfterViewInit{
 	     that.stompClient.subscribe(CHANNEL_REMOVE_AGENT, (message) => {
 	         if(message.body) {
 			 	let res: QueueMemberRemovedEvent = JSON.parse(message.body);
-	         	console.log(res);
 				store.dispatch(callboardAction.removeAgent({queue: res.queue, agentNumber: res.membername}));
 	     	}
 	     });
@@ -142,19 +143,29 @@ export class HomeComponent implements OnInit, AfterViewInit{
 	     	}
 	     });
 
-		that.stompClient.subscribe(CHANNEL_CALL, (message) => {
+		that.stompClient.subscribe(CHANNEL_JOIN, (message) => {
 	     
 	        if(message.body) {
-			 	let res: AgentCalledEvent = JSON.parse(message.body);
+			 	let res: QueueCallerJoinEvent = JSON.parse(message.body);
+				store.dispatch(callboardAction.incQueueCalls({queue: res.queue}));
 	          
 	     	}
 	     
 	     });
-
+	 that.stompClient.subscribe(CHANNEL_LEAVE, (message) => {
+	     
+	        if(message.body) {
+			 	let res: QueueCallerLeaveEvent = JSON.parse(message.body);
+				store.dispatch(callboardAction.decQueueCalls({queue: res.queue}));
+	          
+	     	}
+	     
+	     });
 	  that.stompClient.subscribe(AGENT_CONNECT, (message) => {
 	     
 	        if(message.body) {
 			 	let res: AgentConnectEvent = JSON.parse(message.body);
+			
 	          	store.dispatch(callboardAction.incCalls({queue: res.queue, agentNumber: res.memberName}));
 	     	}
 	     

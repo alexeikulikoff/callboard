@@ -15,3 +15,7 @@ export const removeAgent = createAction('[REMOVE] Remove Agent', props<{ queue: 
 
 
 export const incCalls = createAction('[INC] Increment agents calls', props<{ queue: string, agentNumber:  string }>());
+
+export const decQueueCalls = createAction('[DEC] Decrement queue calls', props<{ queue: string }>());
+
+export const incQueueCalls = createAction('[INC] Increment queue calls', props<{ queue: string }>());

@@ -31,7 +31,7 @@ const callboardReducer = createReducer(
 	const obj = {...state, queues: state.queues.map(q=>{
 		return q.queue === queue ? {queue: q.queue, callers: q.callers, members: agents} : q;
 	})}
-	console.log(obj);
+	
 	return obj;
 	
   }),
@@ -61,7 +61,33 @@ const callboardReducer = createReducer(
 			})} : r;
 		})
 	}
-	console.log(agentState);
+	
+	return obj;
+	
+  }),
+
+
+
+
+ on(callboardAction.decQueueCalls, (state, { queue }) =>{
+	
+	const obj = {
+		...state, queues: state.queues.map(r=> {
+			return r.queue === queue ? {queue: r.queue, callers: r.callers - 1, members: r.members} : r;
+		})
+	}
+	
+	return obj;
+	
+  }),
+ on(callboardAction.incQueueCalls, (state, { queue }) =>{
+	
+	const obj = {
+		...state, queues: state.queues.map(r=> {
+			return r.queue === queue ? {queue: r.queue, callers: r.callers + 1, members: r.members} : r;
+		})
+	}
+	
 	return obj;
 	
   }),
@@ -86,7 +112,7 @@ const callboardReducer = createReducer(
 	const obj = {
 		...state, queues: queues
 	}
-	console.log(obj);
+	
 	return {
 		...state, queues: queues
 	}

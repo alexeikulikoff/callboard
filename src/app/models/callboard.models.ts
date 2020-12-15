@@ -18,6 +18,45 @@ export interface QueueContents{
 	
 }
 
+export interface QueueCallerLeaveEvent{
+	channel: string;
+	channelstate: string;
+	channelstatedesc: string;
+	calleridnum: string;
+	calleridname: string;
+	connectedlinenum: string;
+	connectedlinename: string;
+	language: string;
+	accountcode: string;
+	context: string;
+	exten: string;
+	priority: string;
+	uniqueid: string;
+	linkedid: string;
+	queue: string;
+	count: string;
+	position: string;
+
+} 
+export interface QueueCallerJoinEvent{
+	channel: string;
+	channelstate: string;
+	channelstatedesc: string;
+	calleridnum: string;
+	calleridname: string;
+	connectedlinenum: string;
+	connectedlinename: string;
+	language: string;
+	accountcode: string;
+	context: string;
+	exten: string;
+	priority: string;
+	uniqueid: string;
+	linkedid: string;
+	queue: string;
+	position: string;
+	count: string;
+}
 export interface QueueMemberStatusEvent {
     /*private*/ privilege : string;
 
