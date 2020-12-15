@@ -4,6 +4,7 @@ export interface Agent{
 	number: string;
 	name: string;
 	state: string;
+	calls: number;
 }
 export interface CurrentQueue{
 	
@@ -205,5 +206,13 @@ export interface QueueCallerAbandonEvent {
 
     /*private*/ holdtime : string;
 }
-
+export interface AgentConnectEvent {
+	queue: string;
+	member: string;
+	memberName: string;
+	ringTime: string;
+	holdTime: string;
+	uniqueid: string;
+	channel: string;
+}
 

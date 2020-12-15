@@ -12,3 +12,6 @@ export const setAgentState = createAction('[SET] Agent State', props<{ queue: st
 export const addAgent = createAction('[ADD] Add Agent', props<{ queue: string, agentNumber: string, agentName: string, agentState: string }>());
 
 export const removeAgent = createAction('[REMOVE] Remove Agent', props<{ queue: string, agentNumber:  string }>());
+
+
+export const incCalls = createAction('[INC] Increment agents calls', props<{ queue: string, agentNumber:  string }>());

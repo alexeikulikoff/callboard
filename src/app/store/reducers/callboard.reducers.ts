@@ -17,11 +17,11 @@ export const initialState: IState = {
 }
 
 
-
-
 const callboardReducer = createReducer(
 
   initialState,
+
+
 
  on(callboardAction.removeAgent, (state, { queue, agentNumber }) =>{
 
@@ -39,7 +39,7 @@ const callboardReducer = createReducer(
  on(callboardAction.addAgent, (state, { queue, agentNumber, agentName, agentState }) =>{
 
 	const agents: Agent[] = state.queues.filter(f=>f.queue === queue)[0].members;
-	agents.push({number: agentNumber, name: agentName, state: agentState});
+	agents.push({number: agentNumber, name: agentName, state: agentState, calls: 0});
 	
 	const obj = {...state, queue: state.queues.map(q=>{
 		return q.queue === queue ? {queue: q.queue, callers: q.callers, members: agents} : q;
@@ -50,12 +50,14 @@ const callboardReducer = createReducer(
   }),
 
 
+
+
   on(callboardAction.setAgentState, (state, { queue, agentNumber, agentState }) =>{
 	
 	const obj = {
 		...state, queues: state.queues.map(r=> {
 			return r.queue === queue ? {queue: r.queue, callers: r.callers, members: r.members.map(m=> {
-				return m.number.toUpperCase() === agentNumber.toUpperCase() ? {number: m.number, name: m.name, state: agentState} : m;
+				return m.number.toUpperCase() === agentNumber.toUpperCase() ? {number: m.number, name: m.name, state: agentState, calls: m.calls} : m;
 			})} : r;
 		})
 	}
@@ -63,6 +65,21 @@ const callboardReducer = createReducer(
 	return obj;
 	
   }),
+
+ on(callboardAction.incCalls, (state, { queue, agentNumber }) =>{
+	
+	const obj = {
+		...state, queues: state.queues.map(r=> {
+			return r.queue === queue ? {queue: r.queue, callers: r.callers, members: r.members.map(m=> {
+				return m.number.toUpperCase() === agentNumber.toUpperCase() ? {number: m.number, name: m.name, state: m.state, calls: m.calls + 1} : m;
+			})} : r;
+		})
+	}
+	
+	return obj;
+	
+  }),
+
  on(callboardAction.loadQueuesSuccess, (state, { queues }) =>{
 	
 	
