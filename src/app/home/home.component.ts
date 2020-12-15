@@ -53,6 +53,9 @@ export class HomeComponent implements OnInit, AfterViewInit{
 	["8", "light"],
 	
   ]); 
+
+
+
   private serverUrl = 'http://localhost:8080/socket'
   private title = 'WebSockets chat';
   private stompClient;	

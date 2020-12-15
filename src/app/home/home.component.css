@@ -1,8 +1,55 @@
 
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
+
+
+.status-0{
+	background-color: rgb(0, 153, 51);
+    color: #ffffff;
+}
+
+.status-1{
+	background-color: rgb(255, 51, 0);
+    color: #ffffff;
+}
+.status-2{
+	background-color: rgb(204, 41, 0);
+    color: #ffffff;
+}
+
+.status-3{
+	background-color: rgb(204, 41, 0);
+    color: #ffffff;
+}
+
+.status-4{
+	background-color: rgb(179, 0, 89);
+    color: #ffffff;
+}
+
+.status-5{
+	background-color: rgb(153, 51, 51);
+    color: #ffffff;
+}
+
+.status-6{
+	background-color: rgb(230, 230, 0);
+    color: #ffffff;
+}
+
+.ststus-7{
+	background-color: rgb(230, 230, 0);
+    color: #ffffff;
+}
+
+.status-8{
+	background-color: rhb(0, 0, 102);
+    color: #ffffff;
+}
+
+
 .card{
-	background-color: #ce5c00;
+	background-color: #141619;
 	color: #b6d0d9;
 	
 }
@@ -13,8 +60,8 @@
 	
 }
 .card-title{
-	padding-top:12px;
-	background-color: #c4a000;
+	padding-top:12px; 
+	background-color: #202226;
 	margin-top: 0px;
 }
 .card-body{
@@ -26,7 +73,7 @@
 }
 .alert{
 	margin-bottom: 0.25rem;
-	color: green;
+	color: #ffffff;
 }
 .item-text{
 	margin-bottom: 0rem;
@@ -47,31 +94,4 @@
 	padding-top: 24px;
 
 }
-	
-.panel-container--absolute {
-    position: absolute;
-}
 
-.panel-container {
-    background-color: #141619;
-    border: 1px solid #202226;
-    position: relative;
-    border-radius: 3px;
-    height: 100%;
-    width: 100%;
-  
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    flex-direction: column;
-    -webkit-box-flex: 1;
-    flex: 1 1 0;
-    padding-left: 8px;
-  
-    
-}
-td {
-    text-align: center;
-    vertical-align: middle;
-  
-}

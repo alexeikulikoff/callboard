@@ -1,36 +1,47 @@
 
 
-.agent-red{
-	background-color: red;
+
+.status-0{
+	background-color: rgb(0, 153, 51);
     color: #ffffff;
 }
 
-.agent-blue{
-	background-color: blue;
+.status-1{
+	background-color: rgb(255, 51, 0);
     color: #ffffff;
 }
-.agent-green{
-	background-color: green;
+.status-2{
+	background-color: rgb(204, 41, 0);
     color: #ffffff;
 }
 
-.agent-yellow{
-	background-color: yellow;
+.status-3{
+	background-color: rgb(204, 41, 0);
     color: #ffffff;
-}.agent-cyan{
-	background-color: cyan;
+}
+
+.status-4{
+	background-color: rgb(179, 0, 89);
     color: #ffffff;
-}.agent-coral{
-	background-color: coral;
+}
+
+.status-5{
+	background-color: rgb(153, 51, 51);
     color: #ffffff;
-}.agent-blueviolet{
-	background-color: blueviolet;
+}
+
+.status-6{
+	background-color: rgb(230, 230, 0);
     color: #ffffff;
-}.agent-DarkSlateGrey{
-	background-color: DarkSlateGrey;
+}
+
+.ststus-7{
+	background-color: rgb(230, 230, 0);
     color: #ffffff;
-}.agent-Indigo{
-	background-color: Indigo;
+}
+
+.status-8{
+	background-color: rhb(0, 0, 102);
     color: #ffffff;
 }
 

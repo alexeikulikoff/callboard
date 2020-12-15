@@ -7,7 +7,7 @@
        	  <h3>{{queue.queue}}</h3>
        	  </div>
 		  <div class="card-body">
-		   	<div class="alert alert-{{getAgentColor(agent.state)}}" role="alert"  *ngFor="let agent of queue.members" >
+		   	<div class="alert status-{{agent.state}}" role="alert"  *ngFor="let agent of queue.members" >
 		   	<div class="text-justify">
   			<h5 class="item-text">{{agent.name}}</h5>
   			<small>{{agent.number}}</small>
