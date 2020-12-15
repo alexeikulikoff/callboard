@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit, AfterViewInit{
 
 
 
-  private serverUrl = 'http://localhost:8080/socket'
+  private serverUrl = 'http://172.15.30.48:9898/socket'
   private title = 'WebSockets chat';
   private stompClient;	
 
