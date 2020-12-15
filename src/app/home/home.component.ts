@@ -117,13 +117,13 @@ export class HomeComponent implements OnInit, AfterViewInit{
 	       if(message.body) {
 			 	let res: QueueMemberAddedEvent = JSON.parse(message.body);
 	         
-				store.dispatch(callboardAction.addAgent({queue: res.queue, agentNumber: res.membername, agentName: '',  agentState: res.status}));
+				store.dispatch(callboardAction.addAgent({queue: res.queue, agentNumber: res.membername, agentName: res.agentname,  agentState: res.status}));
 	     	}
 	     });
 	     that.stompClient.subscribe(CHANNEL_REMOVE_AGENT, (message) => {
 	         if(message.body) {
 			 	let res: QueueMemberRemovedEvent = JSON.parse(message.body);
-	         
+	         	console.log(res);
 				store.dispatch(callboardAction.removeAgent({queue: res.queue, agentNumber: res.membername}));
 	     	}
 	     });
@@ -138,7 +138,7 @@ export class HomeComponent implements OnInit, AfterViewInit{
  		that.stompClient.subscribe(CHANNEL_BRIDGE, (message) => {
 	        if(message.body) {
 				let res: BridgeEvent = JSON.parse(message.body);
-	          	console.log(res);
+	          
 	     	}
 	     });
 
@@ -146,7 +146,7 @@ export class HomeComponent implements OnInit, AfterViewInit{
 	     
 	        if(message.body) {
 			 	let res: AgentCalledEvent = JSON.parse(message.body);
-	          	console.log(res);
+	          
 	     	}
 	     
 	     });

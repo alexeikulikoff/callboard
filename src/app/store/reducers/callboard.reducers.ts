@@ -25,24 +25,24 @@ const callboardReducer = createReducer(
 
  on(callboardAction.removeAgent, (state, { queue, agentNumber }) =>{
 
-	const agents: Agent[] = state.queues.filter(f=>f.queue === queue)[0].members.filter(f=> f.number !== agentNumber );
+	const agents: Agent[] = state.queues.filter(f=>f.queue === queue)[0].members.filter(f=> f.number.toUpperCase() !== agentNumber.toUpperCase() );
 	
 	
-	const obj = {...state, queue: state.queues.map(q=>{
+	const obj = {...state, queues: state.queues.map(q=>{
 		return q.queue === queue ? {queue: q.queue, callers: q.callers, members: agents} : q;
 	})}
-
+	console.log(obj);
 	return obj;
 	
   }),
 
  on(callboardAction.addAgent, (state, { queue, agentNumber, agentName, agentState }) =>{
 
-	const agents: Agent[] = state.queues.filter(f=>f.queue === queue)[0].members;
-	agents.push({number: agentNumber, name: agentName, state: agentState, calls: 0});
+
+	const agent: Agent = {number: agentNumber, name: agentName, state: agentState, calls: 0};
 	
-	const obj = {...state, queue: state.queues.map(q=>{
-		return q.queue === queue ? {queue: q.queue, callers: q.callers, members: agents} : q;
+	const obj = {...state, queues: state.queues.map(q=>{
+		return q.queue === queue ? {queue: q.queue, callers: q.callers, members: [...q.members, agent]} : q;
 	})}
 
 	return obj;
