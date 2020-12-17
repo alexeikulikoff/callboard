@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit, AfterViewInit{
 
 
 
-  private serverUrl = 'http://172.15.30.48:9898/socket'
+//  private serverUrl = 'http://172.15.30.48:9898/socket'
   private title = 'WebSockets chat';
   private stompClient;	
 
@@ -102,7 +102,7 @@ export class HomeComponent implements OnInit, AfterViewInit{
   }
 
   initializeWebSocketConnection(store: Store<fromStore.IState>){
-	   let ws = new SockJS(this.serverUrl);
+	   let ws = new SockJS(serviceURL + 'socket');
 	   this.stompClient = Stomp.over(ws);
 	   let that = this;
 	   this.stompClient.connect({}, function(frame) {
